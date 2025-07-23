@@ -22,6 +22,8 @@ def menu():
             return menu()
         
         elif (opcion == 3):
+            busca_contacto()
+            input('Presione Enter para continuar...')
             pass
         elif (opcion == 4):
             pass
@@ -65,13 +67,41 @@ def crear_contacto(fileName: str) -> bool:
 
 def busca_contacto():
 
+    os.system('cls' if os.name == 'nt' else 'clear')
+
     try:
         with open('telefono.json', "r") as file:
-        search = json.load(file)
-        print(search)
+            search = json.load(file)
+            id = int(input('Ingrese ID: '))
+            idC = search['ID']
+            name = search['Nombre']
+
+            if (id == idC):
+                print(f'El contacto encontrado es: {name}')
+            
+            else:
+                print('ID no existe')
+                
+
+    except Exception:
+        print('Error desconocido')
+        return menu()
+
+def del_contacto():
+
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+    try:
+        with open('telefono.json', "r") as file:
+            usu = json.load(file)
+            dele = int(input('Ingrese el ID: '))
+            contacto = usu['ID']
+            eliminar = usu['']
 
 
-
+    except Exception:
+        print('Error desconocido')
+        return menu()
     
 
 if __name__ == "__main__":
